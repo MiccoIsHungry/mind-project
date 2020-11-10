@@ -20,6 +20,7 @@
 </template>
 <script>
 import { Swiper, SwiperItem } from '@/components/Swiper'
+import { getBanner } from '@/api/cartoon'
 export default {
   name: 'Home',
   components: {
@@ -30,18 +31,26 @@ export default {
     changeHandler (payload) {
       console.log('index', payload)
     }
+  },
+  created () {
+    getBanner().then(res => {
+      console.log(res)
+    })
   }
 }
 </script>
 
 <style lang="scss" scoped>
+@import "~@/assets/styles/mixins.scss";
 .page-home {
   display: flex;
   flex-direction: column;
   height: 100%;
   .index-header {
+    @include border-bottom;
     display: flex;
     height: 44px;
+    position: relative;
     //三者等分平铺
     justify-content: space-between;
     align-items: center;
